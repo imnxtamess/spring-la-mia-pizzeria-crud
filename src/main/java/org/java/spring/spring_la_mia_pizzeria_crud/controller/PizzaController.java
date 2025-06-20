@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/pizzas")
@@ -38,4 +39,13 @@ public class PizzaController {
     return "pizzas/show";
   }
 
+  @GetMapping("/search")
+  public String searchByTitle(@RequestParam String name, Model model) {
+
+    List<Pizza> pizzas = repository.findByNameContainingIgnoreCase(name);
+
+    model.addAttribute("pizzas", pizzas);
+
+    return "pizzas/index";
+  }
 }
