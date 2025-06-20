@@ -45,6 +45,7 @@ public class PizzaController {
     List<Pizza> pizzas = repository.findByNameContainingIgnoreCase(name);
 
     model.addAttribute("pizzas", pizzas);
+    model.addAttribute("name", name);
 
     return "pizzas/index";
   }
