@@ -60,7 +60,9 @@ public class PizzaController {
   @GetMapping("/create")
   public String create(Model model) {
 
-    return "/pizzas/create";
+    model.addAttribute("pizza", new Pizza());
+
+    return "pizzas/create";
   }
 
   @PostMapping("/create")
@@ -68,7 +70,7 @@ public class PizzaController {
 
     if (bindingResult.hasErrors()) {
 
-      return "/pizzas/create";
+      return "pizzas/create";
     }
 
     repository.save(formPizza);
