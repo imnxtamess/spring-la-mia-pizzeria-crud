@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crud-Pizzeria</title>
+    <th:block th:replace="~{fragments/resources :: style}"> </th:block>
+  </head>
+  <body>
+    <th:block th:replace="~{fragments/navbar :: navbar}"></th:block>
+    <main>
+      <div class="container">
+        <form
+          id="pizza-form"
+          th:object="${pizza}"
+          th:action="${/pizza/create}"
+          method="post"
+        >
+          <div class="mb-3">
+            <label for="name" class="form-label">Pizza Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              id="name"
+              th:field="*{name}"
+              aria-describedby="helpId"
+              placeholder="Write the pizza name here.."
+            />
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea
+              class="form-control"
+              name="description"
+              id="description"
+              rows="3"
+              th:field="*{description}"
+            >
+            </textarea>
+          </div>
+          <div class="mb-3">
+            <label for="image_url" class="form-label">Image Url</label>
+            <input
+              type="text"
+              class="form-control"
+              name="image_url"
+              id="image_url"
+              aria-describedby="helpId"
+              placeholder="Write the image URL here.."
+              th:field="*{image_url}"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input
+              type="text"
+              class="form-control"
+              name="price"
+              id="price"
+              aria-describedby="helpId"
+              placeholder="Write the price here.."
+              th:field="*{price}"
+            />
+          </div>
+        </form>
+      </div>
+    </main>
+    <th:block th:replace="~{fragments/resources :: bootstrapJs}"></th:block>
+  </body>
+</html>
