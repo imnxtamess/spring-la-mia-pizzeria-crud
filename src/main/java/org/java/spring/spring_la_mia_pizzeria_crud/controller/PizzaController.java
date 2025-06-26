@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 @RequestMapping("/pizzas")
@@ -68,6 +67,10 @@ public class PizzaController {
   @PostMapping("/create")
   public String store(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
 
+    if (bindingResult.hasFieldErrors("price")) {
+      bindingResult.rejectValue("price", "typeMismatch", "Price must be a valid number (e.g. 9.99 )");
+    }
+
     if (bindingResult.hasErrors()) {
 
       return "pizzas/create";
@@ -75,7 +78,7 @@ public class PizzaController {
 
     repository.save(formPizza);
 
-    return "redirect:/pizzas/index";
+    return "redirect:/pizzas";
   }
 
 }

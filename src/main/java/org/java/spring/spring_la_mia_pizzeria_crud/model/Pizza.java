@@ -23,17 +23,18 @@ public class Pizza {
 
   @Size(min = 3, max = 55, message = "The name needs to be between 3 and 50 characters")
   @Column(nullable = false)
-  @NotBlank
+  @NotBlank(message = "Name is required")
   private String name;
 
   @Lob
   private String description;
 
+  @NotNull(message = "Image is required")
   @Size(min = 3, max = 255, message = "The url needs to be between 3 and 255 characters")
   @Column(nullable = false)
   private String image_url;
 
-  @NotNull
+  @NotNull(message = "Price is required")
   @Column(precision = 5, scale = 2)
   private BigDecimal price;
 
