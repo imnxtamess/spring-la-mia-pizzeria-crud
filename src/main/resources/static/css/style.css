@@ -3,13 +3,12 @@
   min-height: 500px;
 }
 
-#deleteModal {
+.deleteModal {
   background-color: white;
   position: absolute;
   top: 55%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  min-height: 600px;
   min-width: 400px;
-  filter: opacity(70%);
+  border-radius: 15px;
 }

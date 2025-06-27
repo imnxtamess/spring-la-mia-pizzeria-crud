@@ -19,6 +19,15 @@
       </form>
 
       <div class="table-responsive mt-5">
+        <div class="deleteModal d-none">
+          <form class="deleteForm d-inline-block" method="post">
+            <p id="confirmMsg" class="pt-5"></p>
+            <div class="d-flex gap-3 pb-5 justify-content-center">
+              <button class="btn btn-sm btn-danger" type="submit">yes</button>
+              <button type="button" id="closeBtn" class="btn btn-sm btn-dark">no</button>
+            </div>
+          </form>
+        </div>
         <th:block th:if="${pizzas.size() > 0}">
           <table class="table table-primary">
             <thead>
@@ -38,9 +47,9 @@
                   <td>
                     <button class="btn btn-small btn-primary"><a class="text-decoration-none"
                         th:href="@{/pizzas/edit/{id}(id=${pizza.id})}">✏️</a></button>
-                    <form class="d-inline-block" th:action="@{/pizzas/delete/{id}(id=${pizza.id})}" method="post">
-                      <button type="submit" class="btn btn-small btn-danger deleteBtn">🗑️</button>
-                    </form>
+                    <button class="btn btn-small btn-danger deleteBtn" th:data-pizzaname="${pizza.name}"
+                      th:data-pizzaid="${pizza.id}">🗑️</button>
+
 
                   </td>
                 </tr>
