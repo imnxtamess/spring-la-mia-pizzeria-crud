@@ -1,0 +1,74 @@
+package org.java.spring.spring_la_mia_pizzeria_crud.model;
+
+import java.time.LocalDate;
+
+import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "discounts")
+public class Discount {
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Integer id;
+
+  private String discountName;
+
+  private LocalDate startDate;
+
+  private LocalDate endDate;
+
+  // > Pizza da cui dipendo
+  @ManyToOne
+  @JoinColumn(name = "pizza_id", nullable = false)
+  private Pizza pizza;
+
+  public Integer getId() {
+    return this.id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getDiscountName() {
+    return this.discountName;
+  }
+
+  public void setDiscountName(String discountName) {
+    this.discountName = discountName;
+  }
+
+  public LocalDate getStartDate() {
+    return this.startDate;
+  }
+
+  public void setStartDate(LocalDate startDate) {
+    this.startDate = startDate;
+  }
+
+  public LocalDate getEndDate() {
+    return this.endDate;
+  }
+
+  public void setEndDate(LocalDate endDate) {
+    this.endDate = endDate;
+  }
+
+  public Pizza getPizza() {
+    return this.pizza;
+  }
+
+  public void setPizza(Pizza pizza) {
+    this.pizza = pizza;
+  }
+
+}

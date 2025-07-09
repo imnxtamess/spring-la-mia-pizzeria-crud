@@ -2,6 +2,7 @@ package org.java.spring.spring_la_mia_pizzeria_crud.controller;
 
 import java.util.List;
 
+import org.java.spring.spring_la_mia_pizzeria_crud.model.Discount;
 import org.java.spring.spring_la_mia_pizzeria_crud.model.Pizza;
 import org.java.spring.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +109,17 @@ public class PizzaController {
     repository.deleteById(id);
 
     return "redirect:/pizzas";
+  }
+
+  @GetMapping("/{id}/discount")
+  public String discount(@PathVariable Integer id, Model model) {
+
+    Discount discount = new Discount();
+    discount.setPizza(repository.findById(id).get());
+
+    model.addAttribute("discount", discount);
+
+    return "discounts/create";
   }
 
 }
