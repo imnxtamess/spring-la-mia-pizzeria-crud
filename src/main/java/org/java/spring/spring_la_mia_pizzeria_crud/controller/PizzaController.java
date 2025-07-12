@@ -119,7 +119,7 @@ public class PizzaController {
 
     model.addAttribute("discount", discount);
 
-    return "discounts/create";
+    return "discounts/create-or-edit";
   }
 
 }

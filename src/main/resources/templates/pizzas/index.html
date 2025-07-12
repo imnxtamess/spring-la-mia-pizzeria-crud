@@ -45,6 +45,9 @@
                   <td><a th:href="@{/pizzas/{id}(id=*{id})}">[[*{name}]]</a></td>
                   <td>[[*{price}]]&euro;</td>
                   <td>
+                    <button class="btn btn-small btn-success"><a class="text-decoration-none text-white"
+                        th:href="@{/pizzas/{id}/discount(id=${pizza.id})}">Add
+                        discount 💸</a></button>
                     <button class="btn btn-small btn-primary"><a class="text-decoration-none"
                         th:href="@{/pizzas/edit/{id}(id=${pizza.id})}">✏️</a></button>
                     <button class="btn btn-small btn-danger deleteBtn" th:data-pizzaname="${pizza.name}"
