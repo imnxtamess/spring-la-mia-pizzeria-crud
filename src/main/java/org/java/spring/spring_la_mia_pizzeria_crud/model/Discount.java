@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "discounts")
@@ -20,10 +22,14 @@ public class Discount {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
+  @NotBlank(message = "A discount cannot exist without specifying a name")
+  @Size(min = 3, message = "A discount name should be at least 3 chars long")
   private String discountName;
 
+  @NotBlank(message = "A start date must be set")
   private LocalDate startDate;
 
+  @NotBlank(message = "An end date must be set")
   private LocalDate endDate;
 
   // > Pizza da cui dipendo

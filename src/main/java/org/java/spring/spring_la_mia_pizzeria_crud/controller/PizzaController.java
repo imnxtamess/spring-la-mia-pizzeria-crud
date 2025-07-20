@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.java.spring.spring_la_mia_pizzeria_crud.model.Discount;
 import org.java.spring.spring_la_mia_pizzeria_crud.model.Pizza;
+import org.java.spring.spring_la_mia_pizzeria_crud.repositories.IngredientRepository;
 import org.java.spring.spring_la_mia_pizzeria_crud.repositories.PizzaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,9 @@ public class PizzaController {
   @Autowired
   private PizzaRepository repository;
 
+  @Autowired
+  private IngredientRepository ingredientRepository;
+
   @GetMapping
   public String index(Model model) {
 
@@ -43,6 +47,7 @@ public class PizzaController {
     Pizza pizza = repository.findById(id).get();
 
     model.addAttribute("pizza", pizza);
+    model.addAttribute("ingredients", ingredientRepository.findAll());
 
     return "pizzas/show";
   }
@@ -62,6 +67,7 @@ public class PizzaController {
   public String create(Model model) {
 
     model.addAttribute("pizza", new Pizza());
+    model.addAttribute("ingredients", ingredientRepository.findAll());
 
     return "pizzas/create";
   }
@@ -74,7 +80,7 @@ public class PizzaController {
     }
 
     if (bindingResult.hasErrors()) {
-
+      model.addAttribute("ingredients", ingredientRepository.findAll());
       return "pizzas/create";
     }
 
@@ -85,7 +91,7 @@ public class PizzaController {
 
   @GetMapping("/edit/{id}")
   public String edit(@PathVariable("id") Integer id, Model model) {
-
+    model.addAttribute("ingredients", ingredientRepository.findAll());
     model.addAttribute("pizza", repository.findById(id).get());
 
     return "pizzas/edit";
@@ -95,6 +101,7 @@ public class PizzaController {
   public String update(@Valid @ModelAttribute("pizza") Pizza formPizza, BindingResult bindingResult, Model model) {
 
     if (bindingResult.hasErrors()) {
+      model.addAttribute("ingredients", ingredientRepository.findAll());
       return "pizzas/edit";
     }
 

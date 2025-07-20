@@ -10,16 +10,25 @@ deleteBtns.forEach(deleteBtn => {
 
     const id = deleteBtn.dataset.pizzaid;
 
-
     const pizzaName = deleteBtn.dataset.pizzaname;
+
+    const ingredientId = deleteBtn.dataset.ingredientid;
+
+    const ingredientName = deleteBtn.dataset.ingredientname;
+
+    console.log(ingredientId, ingredientName)
 
     console.log(pizzaName)
 
     const deleteForm = document.querySelector(".deleteForm")
 
-    deleteForm.action = `/pizzas/delete/${id}`
+    if (id) {
+      deleteForm.action = `/pizzas/delete/${id}`
+      confirmMsg.innerHTML = `Are you sure you want to delete: ${pizzaName} Pizza?`
+    }
 
-    confirmMsg.innerHTML = `Are you sure you want to delete: ${pizzaName} Pizza?`
+    deleteForm.action = `/ingredients/delete/${ingredientId}`
+    confirmMsg.innerHTML = `Are you sure you want to delete this ingredient: ${ingredientName} ?`
 
     deleteModal.classList.remove("d-none")
 
@@ -37,4 +46,3 @@ closeBtn.addEventListener("click", () => {
   console.log(deleteModal.classList)
 
 })
-
